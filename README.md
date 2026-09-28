@@ -1,6 +1,6 @@
 # Adaptix Serverless C2
 
-Serverless C2 transport plugin for [AdaptixC2](https://github.com/Adaptix-Framework/AdaptixC2) using AWS Lambda + DynamoDB as the relay infrastructure. Agent traffic appears as outbound HTTPS to AWS endpoints, requiring no inbound ports or public IPs on the C2 server.
+Serverless C2 transport plugin for [AdaptixC2 v1.2](https://github.com/Adaptix-Framework/AdaptixC2) using AWS Lambda + DynamoDB as the relay infrastructure. Agent traffic appears as outbound HTTPS to AWS endpoints, requiring no inbound ports or public IPs on the C2 server.
 
 ## Architecture
 
