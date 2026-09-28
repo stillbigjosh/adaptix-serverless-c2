@@ -155,7 +155,7 @@ Agent encryption keys are persisted via `TsExtenderDataSave`/`TsExtenderDataLoad
 
 Kharon randomly alternates between GET and POST requests (`HTTP_METHOD_USE_BOTH`). GET requests put data in the `id` query parameter (base64-encoded per the profile). POST requests put raw binary in the HTTP body. The Lambda handles both transparently.
 
-## OPSEC Considerations
+## OPSEC
 
 - All agent traffic is outbound HTTPS to `*.lambda-url.*.on.aws` endpoints
 - No inbound ports required on the C2 server
