@@ -25,7 +25,7 @@ AdaptixC2 Teamserver + UI
 ```
 
 **Data flow:**
-1. Kharon agent sends encrypted check-in via HTTPS to Lambda Function URL
+1. [Kharon](https://github.com/entropy-z/Kharon) agent sends encrypted check-in via HTTPS to Lambda Function URL
 2. Lambda stores raw data in DynamoDB `inbound` table
 3. Lambda polls `outbound` table for up to 8 seconds (bridges the async gap for registration)
 4. If a response exists, Lambda returns it and marks it delivered
