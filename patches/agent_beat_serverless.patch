@@ -1,0 +1,11 @@
+--- a/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/Agent.cpp
++++ b/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/Agent.cpp
+@@ -113,7 +113,7 @@
+ 	MemFreeLocal((LPVOID*)&this->info->username,      StrLenA(this->info->username));
+ 	MemFreeLocal((LPVOID*)&this->info->process_name,  StrLenA(this->info->process_name));
+
+-#if defined(BEACON_HTTP) || defined(BEACON_DNS)
++#if defined(BEACON_HTTP) || defined(BEACON_DNS) || defined(BEACON_SERVERLESS)
+
+ 	ULONG beat_size = packer->datasize();
+ 	PBYTE beat      = packer->data();

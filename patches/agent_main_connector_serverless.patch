@@ -1,0 +1,20 @@
+--- a/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/MainAgent.cpp
++++ b/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/MainAgent.cpp
+@@ -15,6 +15,8 @@
+ #include "ConnectorTCP.h"
+ #elif defined(BEACON_DNS)
+ #include "ConnectorDNS.h"
++#elif defined(BEACON_SERVERLESS)
++#include "ConnectorServerless.h"
+ #endif
+
+ Agent* g_Agent;
+@@ -30,6 +32,8 @@
+ 	return new ConnectorTCP();
+ #elif defined(BEACON_DNS)
+ 	return new ConnectorDNS();
++#elif defined(BEACON_SERVERLESS)
++	return new ConnectorServerless();
+ #endif
+ }
+

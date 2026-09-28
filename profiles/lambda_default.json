@@ -1,0 +1,63 @@
+{
+    "callbacks": [
+        {
+            "hosts": [
+                "LAMBDA_URL_HERE:443"
+            ],
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "server_error": {
+                "http_status": 404,
+                "response": "Not Found",
+                "headers": {}
+            },
+            "get": {
+                "server_headers": {},
+                "client_headers": {},
+                "empty_response": "",
+                "uri": {
+                    "/relay": {
+                        "server_output": {
+                            "mask": false,
+                            "format": "base64",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        "client_output": {
+                            "mask": false,
+                            "format": "base64",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        "client_parameters": [
+                            {"id": ""}
+                        ]
+                    }
+                }
+            },
+            "post": {
+                "server_headers": {},
+                "client_headers": {},
+                "empty_response": "",
+                "uri": {
+                    "/relay": {
+                        "server_output": {
+                            "mask": false,
+                            "format": "base64",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        "client_output": {
+                            "mask": false,
+                            "format": "raw",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        "client_parameters": [
+                            {"id": ""}
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}

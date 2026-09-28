@@ -1,0 +1,12 @@
+--- a/AdaptixServer/extenders/beacon_agent/pl_main.go
++++ b/AdaptixServer/extenders/beacon_agent/pl_main.go
+@@ -590,6 +633,9 @@ func (p *PluginAgent) BuildPayload(profile adaptix.BuildProfile, agentProfiles [
+ 	} else if protocol == "dns" {
+ 		ObjectDir = ObjectDir_dns
+ 		ConnectorFile = "ConnectorDNS"
++	} else if protocol == "serverless" {
++		ObjectDir = ObjectDir_serverless
++		ConnectorFile = "ConnectorServerless"
+ 	} else {
+ 		return nil, "", errors.New("protocol unknown")
+ 	}

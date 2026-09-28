@@ -1,0 +1,44 @@
+--- a/AdaptixServer/extenders/beacon_agent/pl_main.go
++++ b/AdaptixServer/extenders/beacon_agent/pl_main.go
+@@ -297,6 +297,7 @@ var (
+ 	ObjectDir_smb  = "objects_smb"
+ 	ObjectDir_tcp  = "objects_tcp"
+ 	ObjectDir_dns  = "objects_dns"
++	ObjectDir_serverless = "objects_serverless"
+ 	ObjectFiles    = [...]string{"Agent", "AgentConfig", "AgentInfo", "ApiLoader", "beacon_functions", "bof_loader", "Boffer", "Commander", "crt", "Crypt", "Downloader", "Encoders", "JobsController", "MainAgent", "MemorySaver", "Packer", "Pivotter", "ProcLoader", "Proxyfire", "std", "utils", "WaitMask"}
+ 	CFlags         = "-c -fno-builtin -fno-unwind-tables -fno-strict-aliasing -fno-ident -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-strict-overflow -fno-delete-null-pointer-checks -fpermissive -w -masm=intel -fPIC"
+ 	LFlags         = "-Os -s -Wl,-s,--gc-sections -static-libgcc -mwindows"
+@@ -495,6 +496,33 @@ func (p *PluginAgent) GenerateProfiles(profile adaptix.BuildProfile) ([][]byte,
+ 				return nil, err
+ 			}
+
++		case "serverless":
++
++			lambdaUrl, _ := listenerMap["lambda_url"].(string)
++			relayApiKey, _ := listenerMap["relay_api_key"].(string)
++			encryptKey, _ := listenerMap["encrypt_key"].(string)
++
++			pollAttempts := 15
++			if pa, ok := listenerMap["poll_attempts"].(float64); ok && pa > 0 {
++				pollAttempts = int(pa)
++			}
++			pollIntervalMs := 3000
++			if pi, ok := listenerMap["poll_interval_ms"].(float64); ok && pi > 0 {
++				pollIntervalMs = int(pi)
++			}
++
++			userAgent := "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
++			if ua, ok := listenerMap["user_agent"].(string); ok && ua != "" {
++				userAgent = ua
++			}
++
++			params = append(params, lambdaUrl)
++			params = append(params, relayApiKey)
++			params = append(params, encryptKey)
++			params = append(params, pollAttempts)
++			params = append(params, pollIntervalMs)
++			params = append(params, userAgent)
++
+ 		default:
+ 			return nil, errors.New("protocol unknown")
+ 		}

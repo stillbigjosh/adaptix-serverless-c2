@@ -1,0 +1,27 @@
+# Build artifacts
+*.so
+*.exe
+*.bin
+*.o
+bootstrap
+agent/src_loader/Include/Shellcode.h
+agent/src_beacon/Bin/
+
+# Lambda deploy packages
+deploy/aws/lambda/bootstrap
+deploy/aws/lambda/*.zip
+deploy/aws/*.zip
+
+# Go
+vendor/
+
+# Terraform
+deploy/aws/.terraform/
+deploy/aws/.terraform.lock.hcl
+deploy/aws/terraform.tfstate
+deploy/aws/terraform.tfstate.backup
+*.tfvars
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,21 @@
+--- a/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/config.cpp
++++ b/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/config.cpp
+@@ -54,6 +54,18 @@ unsigned int getProfileSize()
+ 	return 1;
+ }
+
++
++#elif defined(BEACON_SERVERLESS)
++
++char* getProfile()
++{
++	return (char*)"";
++}
++
++unsigned int getProfileSize()
++{
++	return 1;
++}
+ #endif
+
+ int isIatHidingEnabled()
