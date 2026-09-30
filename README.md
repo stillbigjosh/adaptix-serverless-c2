@@ -59,6 +59,44 @@ AdaptixC2 Teamserver + UI
 - NASM assembler: `apt install nasm`
 - objcopy: `apt install binutils-mingw-w64-x86-64`
 
+## AWS Account Setup
+
+### 1. Create an IAM User for Deployment
+
+In the AWS Console:
+
+1. Go to **IAM > Users > Create user**
+2. Name it `adaptix-deployer`
+3. Select **Attach policies directly**
+4. Attach these AWS managed policies:
+   - `AmazonDynamoDBFullAccess`
+   - `AWSLambda_FullAccess`
+   - `IAMFullAccess`
+   - `CloudWatchLogsFullAccess`
+5. Add an **inline policy** for KMS:
+   - Click **Add permissions > Create inline policy > JSON**
+   - Paste: `{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":"kms:*","Resource":"*"}]}`
+   - Name it `KMSFullAccess`
+6. Create the user, then go to **Security credentials > Create access key**
+7. Choose **Command Line Interface (CLI)**
+8. Save the Access Key ID and Secret Access Key
+
+### 2. Configure AWS CLI
+
+```bash
+aws configure
+# AWS Access Key ID: <paste access key>
+# AWS Secret Access Key: <paste secret key>
+# Default region: us-east-1
+# Default output format: json
+```
+
+Verify:
+
+```bash
+aws sts get-caller-identity
+```
+
 ## Installation
 
 ### Step 1: Deploy AWS Infrastructure
